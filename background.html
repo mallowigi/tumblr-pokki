@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/lib/pokkiHostedFramework-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/lib/pokkiHelper.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        pokkiHelper.setStartSize(1200, 800);
+        pokkiHelper.enableDefaults();
+
+        var startUrl = 'http://www.tumblr.com'
+
+        var app = new pokkiHosted.Application({
+            urls: {
+                start: startUrl,
+                whitelist: [
+                    'tumblr.com'
+                ]
+            },
+            injections: {
+                '*' : 'js/lib/SmoothScroll.js'	//Inject Smooth Scroll on every pagePlugin
+            }
+        });
+        pokki.addEventListener('onPageLoading', function(e) {
+            console.log('[DEBUG] onPageLoading: ', e);
+
+            //Match logout page, clear websheet cookies when called
+            if (e.url.match(/tumblr.com\/logout$/)) {
+                pokki.clearWebSheetCookies();
+                pokki.navigateTo(startUrl, 'window');
+                console.log('Cleared Websheet Cookies');
+            }
+        });
+        if (pokki.isAppRunning()) {
+            app.start();
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "Pokki Tumblr",
+  "version": "0.0",
+  "icons": { "19":  "img/img-19x19.png",
+    "29":  "img/img-29x29.png",
+    "42":  "img/img-42x42.png",
+    "256": "img/img-256x256.png" },
+  "description": "A basic tumblr wrapper for Pokki",
+  "navigation":true,
+  "background": "background.html"
+}
